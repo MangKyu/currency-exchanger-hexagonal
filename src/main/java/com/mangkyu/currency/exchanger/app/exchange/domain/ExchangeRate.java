@@ -1,0 +1,18 @@
+package com.mangkyu.currency.exchanger.app.exchange.domain;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@Builder
+@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
+public class ExchangeRate {
+
+    private final Currency source;
+    private final Currency target;
+    private final Double rate;
+
+}
