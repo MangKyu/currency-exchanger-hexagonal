@@ -31,7 +31,7 @@ class GetExchangeRateAdapterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "a", " "})
+    @ValueSource(strings = {"", "a", " ", "USD"})
     void 환율정보조회API호출실패_잘못된파라미터(final String target) throws Exception {
         final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/exchange-rates")
                 .param("target", target));
