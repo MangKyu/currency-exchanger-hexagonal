@@ -6,5 +6,10 @@ public enum Currency {
     KRW,
     JPY,
     PHP,
+    ;
+
+    public String quoteKey(final Currency targetCurrency) {
+        return this.name() + targetCurrency.name();
+    }
 
 }

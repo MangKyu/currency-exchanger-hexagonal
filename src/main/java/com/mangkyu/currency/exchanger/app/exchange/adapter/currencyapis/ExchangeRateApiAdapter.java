@@ -19,7 +19,7 @@ public class ExchangeRateApiAdapter implements LoadExchangeRatePort {
         return ExchangeRate.builder()
                 .source(source)
                 .target(target)
-                .rate(response.getRate(source.name() + target.name()))
+                .rate(response.getRate(source.quoteKey(target)))
                 .build();
     }
 

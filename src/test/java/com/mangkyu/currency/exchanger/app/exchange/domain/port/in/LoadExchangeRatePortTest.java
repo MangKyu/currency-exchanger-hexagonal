@@ -38,7 +38,7 @@ class LoadExchangeRatePortTest {
 
     @Test
     void 환율정보조회성공() {
-        exchangeRateCaller.setQuotes(Collections.singletonMap("USDKRW", rate));
+        exchangeRateCaller.setQuotes(Collections.singletonMap(quoteKey, rate));
 
         final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
