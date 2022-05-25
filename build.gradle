@@ -35,6 +35,7 @@ dependencies {
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.github.mangkyu:spring-boot-test-automock:0.0.4'
 }
 
 tasks.named('test') {

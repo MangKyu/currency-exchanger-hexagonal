@@ -1,0 +1,5 @@
+io:
+  github:
+    mangkyu:
+      automock:
+        enable: true
