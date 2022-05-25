@@ -3,7 +3,7 @@ package com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis;
 import com.mangkyu.currency.exchanger.app.exchange.application.converter.ExchangeConverter;
 import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchange.domain.ExchangeRate;
-import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.LoadExchangeRatePort;
+import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.LoadExchangeRatePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

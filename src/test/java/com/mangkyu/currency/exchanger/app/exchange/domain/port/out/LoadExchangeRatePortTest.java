@@ -1,7 +1,6 @@
-package com.mangkyu.currency.exchanger.app.exchange.domain.port.in;
+package com.mangkyu.currency.exchanger.app.exchange.domain.port.out;
 
 import com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis.ExchangeRateApiAdapter;
-import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchange.domain.ExchangeRate;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeException;
