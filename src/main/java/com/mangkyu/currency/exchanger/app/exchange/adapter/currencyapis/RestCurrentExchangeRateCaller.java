@@ -1,6 +1,8 @@
 package com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis;
 
 import com.google.gson.Gson;
+import com.mangkyu.currency.exchanger.app.common.errors.CommonErrorCode;
+import com.mangkyu.currency.exchanger.app.common.errors.CommonException;
 import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -24,7 +26,7 @@ class RestCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
         final String result = callApis(source, target);
 
         if (!isSuccess(result)) {
-            return null;
+            throw new CommonException(CommonErrorCode.INTERNAL_SERVER_ERROR);
         }
 
         return gson.fromJson(result, CurrentExchangeRateResponse.class);

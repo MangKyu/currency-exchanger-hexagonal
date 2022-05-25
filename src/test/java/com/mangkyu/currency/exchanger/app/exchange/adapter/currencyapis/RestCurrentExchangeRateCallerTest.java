@@ -1,6 +1,8 @@
 package com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis;
 
 import com.google.gson.Gson;
+import com.mangkyu.currency.exchanger.app.common.errors.CommonErrorCode;
+import com.mangkyu.currency.exchanger.app.common.errors.CommonException;
 import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -31,17 +34,19 @@ class RestCurrentExchangeRateCallerTest {
 
     @Test
     void API호출_실패응답() {
-        doReturn(successFalseString()).when(restTemplate)
+        doReturn(successFalseString())
+                .when(restTemplate)
                 .exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(Class.class));
 
-        final CurrentExchangeRateResponse result = target.call(sourceCurrency, targetCurrency);
+        final CommonException result = assertThrows(CommonException.class, () -> target.call(sourceCurrency, targetCurrency));
 
-        assertThat(result).isNull();
+        assertThat(result.getErrorCode()).isEqualTo(CommonErrorCode.INTERNAL_SERVER_ERROR);
     }
 
     @Test
     void API호출_성공응답() {
-        doReturn(successTrueString()).when(restTemplate)
+        doReturn(successTrueString())
+                .when(restTemplate)
                 .exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(Class.class));
 
         final CurrentExchangeRateResponse result = target.call(sourceCurrency, targetCurrency);
