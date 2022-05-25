@@ -11,6 +11,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import static com.mangkyu.currency.exchanger.app.exchange.testbase.ExchangeTestBase.sourceCurrency;
+import static com.mangkyu.currency.exchanger.app.exchange.testbase.ExchangeTestBase.targetCurrency;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -22,9 +24,6 @@ class RestCurrentExchangeRateCallerTest {
     private CurrentExchangeRateCaller target;
 
     private RestTemplate restTemplate;
-
-    private final Currency sourceCurrency = Currency.USD;
-    private final Currency targetCurrency = Currency.KRW;
 
     @BeforeEach
     void init() {

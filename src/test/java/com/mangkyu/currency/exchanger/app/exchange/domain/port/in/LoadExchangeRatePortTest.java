@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 
+import static com.mangkyu.currency.exchanger.app.exchange.testbase.ExchangeTestBase.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,10 +22,6 @@ class LoadExchangeRatePortTest {
 
     private LoadExchangeRatePort target;
     private TestExchangeRateApiCaller exchangeRateCaller;
-
-    private final Currency sourceCurrency = Currency.USD;
-    private final Currency targetCurrency = Currency.KRW;
-    private final double rate = 112_1.419945;
 
     @BeforeEach
     void init() {
