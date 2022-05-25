@@ -13,6 +13,10 @@ public class ExchangeRate {
 
     private final Currency source;
     private final Currency target;
-    private final Double rate;
+    private final ExchangePrice price;
+
+    public double getPrice() {
+        return price.getPrice();
+    }
 
 }

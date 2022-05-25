@@ -37,12 +37,12 @@ class LoadExchangeRatePortTest {
 
     @Test
     void 환율정보조회성공() {
-        exchangeRateCaller.setQuotes(Collections.singletonMap(quoteKey, rate));
+        exchangeRateCaller.setQuotes(Collections.singletonMap(quoteKey, price));
 
         final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
         assertThat(result).isNotNull();
-        assertThat(result.getRate()).isEqualTo(rate);
+        assertThat(result.getPrice()).isEqualTo(price);
     }
 
 }

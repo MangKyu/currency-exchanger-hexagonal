@@ -15,7 +15,7 @@ class ExchangeConverterTest {
         assertThat(result).isNotNull();
         assertThat(result.getSource()).isEqualTo(sourceCurrency);
         assertThat(result.getTarget()).isEqualTo(targetCurrency);
-        assertThat(result.getRate()).isEqualTo(rate);
+        assertThat(result.getPrice()).isEqualTo(price);
     }
 
 }
