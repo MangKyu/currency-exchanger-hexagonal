@@ -1,12 +1,14 @@
 package com.mangkyu.currency.exchanger.app.exchange.error;
 
+import com.mangkyu.currency.exchanger.app.common.errors.CommonException;
+import com.mangkyu.currency.exchanger.app.common.errors.ErrorCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
-public class ExchangeException extends RuntimeException {
+public class ExchangeException extends CommonException {
 
-    private final ExchangeErrorCode errorCode;
+    public ExchangeException(final ErrorCode errorCode) {
+        super(errorCode);
+    }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 @ToString
 public enum ExchangeErrorCode implements ErrorCode {
 
+    INVALID_TARGET_CURRENCY(HttpStatus.BAD_REQUEST, "Target currency is invalid."),
     FETCH_EXCHANGE_RATE_FAIL(HttpStatus.INTERNAL_SERVER_ERROR, "Fetch exchange rate fail."),
     ;
 
