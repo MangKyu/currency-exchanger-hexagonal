@@ -20,9 +20,10 @@ class GetExchangeRateAdapter {
 
     @GetMapping("/exchange-rates")
     public ResponseEntity<Map<String, Double>> getExchangeRate(final Currency target) {
-        if (target == null || target == Currency.USD) {
+        if (!Currency.canBeTarget(target)) {
             throw new ExchangeException(ExchangeErrorCode.INVALID_TARGET_CURRENCY);
         }
+
         return ResponseEntity.ok(Collections.singletonMap("rate", getExchangeRateUseCase.getExchangeRate(target)));
     }
 
