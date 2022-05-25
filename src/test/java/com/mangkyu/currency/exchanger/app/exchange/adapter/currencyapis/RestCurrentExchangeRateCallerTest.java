@@ -1,9 +1,9 @@
 package com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis;
 
 import com.google.gson.Gson;
-import com.mangkyu.currency.exchanger.app.common.errors.CommonErrorCode;
-import com.mangkyu.currency.exchanger.app.common.errors.CommonException;
 import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
+import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
+import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpEntity;
@@ -38,9 +38,9 @@ class RestCurrentExchangeRateCallerTest {
                 .when(restTemplate)
                 .exchange(any(String.class), any(HttpMethod.class), any(HttpEntity.class), any(Class.class));
 
-        final CommonException result = assertThrows(CommonException.class, () -> target.call(sourceCurrency, targetCurrency));
+        final ExchangeException result = assertThrows(ExchangeException.class, () -> target.call(sourceCurrency, targetCurrency));
 
-        assertThat(result.getErrorCode()).isEqualTo(CommonErrorCode.INTERNAL_SERVER_ERROR);
+        assertThat(result.getErrorCode()).isEqualTo(ExchangeErrorCode.FETCH_EXCHANGE_RATE_FAIL);
     }
 
     @Test
