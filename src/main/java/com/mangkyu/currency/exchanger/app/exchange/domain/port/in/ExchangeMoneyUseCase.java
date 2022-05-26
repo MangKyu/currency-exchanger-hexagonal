@@ -5,5 +5,5 @@ import com.mangkyu.currency.exchanger.app.money.domain.Money;
 
 public interface ExchangeMoneyUseCase {
 
-    long exchangeMoney(final Money money, final Currency target);
+    Money exchangeMoney(final Money money, final Currency target);
 }

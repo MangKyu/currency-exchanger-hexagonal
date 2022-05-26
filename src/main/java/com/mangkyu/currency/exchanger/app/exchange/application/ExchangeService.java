@@ -27,9 +27,9 @@ public class ExchangeService implements GetExchangeRateUseCase, ExchangeMoneyUse
     }
 
     @Override
-    public long exchangeMoney(final Money money, final Currency target) {
+    public Money exchangeMoney(final Money money, final Currency target) {
         final double exchangeRate = getExchangeRate(target);
-        return Money.of((long) (money.getAmount().longValue() * exchangeRate), target)
-                .getAmount().longValue();
+
+        return money.exchange(exchangeRate, target);
     }
 }
