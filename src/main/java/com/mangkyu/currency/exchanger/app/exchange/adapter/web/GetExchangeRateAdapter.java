@@ -20,12 +20,7 @@ class GetExchangeRateAdapter {
 
     @GetMapping("/api/exchange-rates")
     public ResponseEntity<Map<String, String>> getExchangeRate(final Currency target) {
-        if (!Currency.canBeTarget(target)) {
-            throw new ExchangeException(ExchangeErrorCode.INVALID_TARGET_CURRENCY);
-        }
-
         final double rate = getExchangeRateUseCase.getExchangeRate(target);
-
         return ResponseEntity.ok(Collections.singletonMap("rate", String.format("%.2f", rate)));
     }
 

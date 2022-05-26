@@ -3,7 +3,6 @@ package com.mangkyu.currency.exchanger.app.exchange.adapter.web;
 import com.mangkyu.currency.exchanger.app.common.errors.CommonErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.GetExchangeRateUseCase;
-import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -39,17 +38,6 @@ class GetExchangeRateAdapterTest {
 
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("rate").value(roundedPrice));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", " ", "USD"})
-    void 환율정보조회API호출실패_비어있거나USD(final String target) throws Exception {
-        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/api/exchange-rates")
-                .param("target", target));
-
-        result.andExpect(status().isBadRequest())
-                .andExpect(jsonPath("code").value(ExchangeErrorCode.INVALID_TARGET_CURRENCY.name()))
-                .andExpect(jsonPath("message").value(ExchangeErrorCode.INVALID_TARGET_CURRENCY.getMessage()));
     }
 
     @ParameterizedTest
