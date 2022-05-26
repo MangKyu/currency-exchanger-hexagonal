@@ -25,7 +25,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Object> handleMethodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException e) {
         log.warn("handleMethodArgumentTypeMismatchException", e);
-        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, e.getMessage());
+        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, "");
     }
 
     @Override

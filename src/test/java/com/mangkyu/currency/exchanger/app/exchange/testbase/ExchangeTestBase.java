@@ -17,6 +17,7 @@ public final class ExchangeTestBase {
     public static final Currency targetCurrency = Currency.KRW;
     public static final String quoteKey = "USDKRW";
     public static final double price = 112_1.419945;
+    public static final double roundedPrice = 112_1.42;
 
     public static CurrentExchangeRateResponse exchangeRateResponse = CurrentExchangeRateResponse.builder()
             .timestamp(System.currentTimeMillis())
