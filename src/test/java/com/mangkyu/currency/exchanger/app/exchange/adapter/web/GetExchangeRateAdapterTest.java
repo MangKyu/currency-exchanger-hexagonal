@@ -34,7 +34,7 @@ class GetExchangeRateAdapterTest {
                 .when(exchangeRateUseCase)
                 .getExchangeRate(Currency.KRW);
 
-        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/exchange-rates")
+        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/api/exchange-rates")
                 .param("target", Currency.KRW.name()));
 
         result.andExpect(status().isOk())
@@ -44,7 +44,7 @@ class GetExchangeRateAdapterTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "USD"})
     void 환율정보조회API호출실패_비어있거나USD(final String target) throws Exception {
-        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/exchange-rates")
+        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/api/exchange-rates")
                 .param("target", target));
 
         result.andExpect(status().isBadRequest())
@@ -55,7 +55,7 @@ class GetExchangeRateAdapterTest {
     @ParameterizedTest
     @ValueSource(strings = {"a", "abc"})
     void 환율정보조회API호출실패_Currency가아닌파라미터(final String target) throws Exception {
-        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/exchange-rates")
+        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/api/exchange-rates")
                 .param("target", target));
 
         result.andExpect(status().isBadRequest())

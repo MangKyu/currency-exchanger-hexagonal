@@ -18,7 +18,7 @@ class GetExchangeRateAdapter {
 
     private final GetExchangeRateUseCase getExchangeRateUseCase;
 
-    @GetMapping("/exchange-rates")
+    @GetMapping("/api/exchange-rates")
     public ResponseEntity<Map<String, String>> getExchangeRate(final Currency target) {
         if (!Currency.canBeTarget(target)) {
             throw new ExchangeException(ExchangeErrorCode.INVALID_TARGET_CURRENCY);
