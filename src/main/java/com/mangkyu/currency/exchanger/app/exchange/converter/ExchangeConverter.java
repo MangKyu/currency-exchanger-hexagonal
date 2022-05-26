@@ -1,4 +1,4 @@
-package com.mangkyu.currency.exchanger.app.exchange.application.converter;
+package com.mangkyu.currency.exchanger.app.exchange.converter;
 
 import com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis.CurrentExchangeRateResponse;
 import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
