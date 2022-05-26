@@ -1,5 +1,6 @@
 package com.mangkyu.currency.exchanger.app.exchange.domain;
 
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;

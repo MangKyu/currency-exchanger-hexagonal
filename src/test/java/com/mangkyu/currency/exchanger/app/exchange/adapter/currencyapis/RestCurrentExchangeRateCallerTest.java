@@ -1,7 +1,6 @@
 package com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis;
 
 import com.google.gson.Gson;
-import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeException;
 import org.junit.jupiter.api.BeforeEach;

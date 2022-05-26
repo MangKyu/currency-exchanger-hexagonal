@@ -1,7 +1,7 @@
 package com.mangkyu.currency.exchanger.app.exchange.adapter.web;
 
 import com.mangkyu.currency.exchanger.app.common.errors.CommonErrorCode;
-import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.GetExchangeRateUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

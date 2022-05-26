@@ -1,7 +1,7 @@
 package com.mangkyu.currency.exchanger.app.exchange.converter;
 
 import com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis.CurrentExchangeRateResponse;
-import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchange.domain.ExchangePrice;
 import com.mangkyu.currency.exchanger.app.exchange.domain.ExchangeRate;
 import org.mapstruct.Mapper;

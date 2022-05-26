@@ -2,7 +2,7 @@ package com.mangkyu.currency.exchanger.app.exchange.testbase;
 
 import com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis.CurrentExchangeRateCaller;
 import com.mangkyu.currency.exchanger.app.exchange.adapter.currencyapis.CurrentExchangeRateResponse;
-import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 
 import java.util.Collections;
 import java.util.Map;

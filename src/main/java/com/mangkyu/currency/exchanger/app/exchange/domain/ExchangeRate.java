@@ -1,5 +1,6 @@
 package com.mangkyu.currency.exchanger.app.exchange.domain;
 
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

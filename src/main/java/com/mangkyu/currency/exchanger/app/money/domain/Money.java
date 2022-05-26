@@ -1,6 +1,5 @@
 package com.mangkyu.currency.exchanger.app.money.domain;
 
-import com.mangkyu.currency.exchanger.app.exchange.domain.Currency;
 import com.mangkyu.currency.exchanger.app.money.error.MoneyErrorCode;
 import com.mangkyu.currency.exchanger.app.money.error.MoneyException;
 import lombok.*;

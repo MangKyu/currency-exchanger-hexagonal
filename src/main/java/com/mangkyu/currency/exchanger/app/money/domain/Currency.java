@@ -1,4 +1,4 @@
-package com.mangkyu.currency.exchanger.app.exchange.domain;
+package com.mangkyu.currency.exchanger.app.money.domain;
 
 import lombok.RequiredArgsConstructor;
 
