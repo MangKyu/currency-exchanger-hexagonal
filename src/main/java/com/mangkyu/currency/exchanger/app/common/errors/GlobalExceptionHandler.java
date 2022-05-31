@@ -35,7 +35,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             final HttpStatus status,
             final WebRequest request) {
         log.warn("handleMethodArgumentNotValid", e);
-        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, e.getMessage());
+        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, CommonErrorCode.INVALID_PARAMETER.getMessage());
     }
 
     @ExceptionHandler({Exception.class})
