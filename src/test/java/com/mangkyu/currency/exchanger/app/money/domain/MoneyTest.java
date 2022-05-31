@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.mangkyu.currency.exchanger.app.exchange.testbase.ExchangeTestBase.*;
+import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
