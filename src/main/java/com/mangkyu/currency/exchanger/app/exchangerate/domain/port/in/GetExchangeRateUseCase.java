@@ -4,6 +4,6 @@ import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 
 public interface GetExchangeRateUseCase {
 
-    double getExchangeRate(final Currency target);
+    double getExchangeRate(final Currency source, final Currency target);
 
 }

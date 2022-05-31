@@ -1,4 +1,4 @@
-package com.mangkyu.currency.exchanger.app.exchangerate.error;
+package com.mangkyu.currency.exchanger.app.exchange.error;
 
 import com.mangkyu.currency.exchanger.app.common.errors.ErrorCode;
 import lombok.Getter;
@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 @Getter
 @RequiredArgsConstructor
 @ToString
-public enum ExchangeRateErrorCode implements ErrorCode {
+public enum ExchangeErrorCode implements ErrorCode {
 
-    FETCH_EXCHANGE_RATE_FAIL(HttpStatus.INTERNAL_SERVER_ERROR, "Fetch exchange rate fail."),
+    INVALID_TARGET_CURRENCY(HttpStatus.BAD_REQUEST, "Target currency is invalid."),
     ;
 
     private final HttpStatus httpStatus;
