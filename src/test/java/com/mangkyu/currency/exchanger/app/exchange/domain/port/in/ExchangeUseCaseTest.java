@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 
 class ExchangeUseCaseTest {
 
-    private ExchangeMoneyUseCase target;
+    private ExchangeUseCase target;
     private GetExchangeRateUseCase getExchangeRateUseCase;
 
     @BeforeEach
