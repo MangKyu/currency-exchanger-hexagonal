@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DecimalFormat;
+
 @RestController
 @RequiredArgsConstructor
 class GetExchangeRateAdapter {
@@ -18,7 +20,7 @@ class GetExchangeRateAdapter {
         final double exchangeRate = getExchangeRateUseCase.getExchangeRate(source, target);
 
         final GetExchangeRateResponse response = new GetExchangeRateResponse(
-                String.format("%.2f", exchangeRate),
+                new DecimalFormat("#,###.00").format(exchangeRate),
                 source.toExchangeUnit(target));
 
         return ResponseEntity.ok(response);

@@ -18,7 +18,7 @@ public final class ExchangeTestBase {
     public static final Currency targetCurrency = Currency.KRW;
     public static final String quoteKey = "USDKRW";
     public static final double price = 112_1.419945;
-    public static final double roundedPrice = 112_1.42;
+    public static final String formattedPrice = "1,121.42";
 
     public static final long amount = 100L;
     public static final Money money = Money.of(amount, sourceCurrency);

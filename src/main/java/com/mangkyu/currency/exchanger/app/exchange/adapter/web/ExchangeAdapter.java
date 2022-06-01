@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.text.DecimalFormat;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ class ExchangeAdapter {
                 exchangeRequest.getTargetCurrency());
 
         return ResponseEntity.ok(new ExchangeResponse(
-                String.format("%.2f", (double) exchangedMoney.toLong()),
+                new DecimalFormat("#,###.00").format(exchangedMoney.toLong()),
                 exchangedMoney.getCurrency()));
     }
 
