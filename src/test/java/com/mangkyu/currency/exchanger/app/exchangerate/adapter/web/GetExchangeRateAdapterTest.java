@@ -36,7 +36,8 @@ class GetExchangeRateAdapterTest {
                 .param("target", targetCurrency.name()));
 
         result.andExpect(status().isOk())
-                .andExpect(jsonPath("rate").value(roundedPrice));
+                .andExpect(jsonPath("rate").value(roundedPrice))
+                .andExpect(jsonPath("unit").value(exchangeUnit));
     }
 
     @ParameterizedTest

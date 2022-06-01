@@ -42,4 +42,8 @@ public enum Currency {
                 .collect(Collectors.toList());
     }
 
+    public String toExchangeUnit(final Currency target) {
+        return target.name() +"/" + name();
+    }
+
 }

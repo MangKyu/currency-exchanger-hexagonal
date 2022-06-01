@@ -23,6 +23,7 @@ public final class ExchangeTestBase {
     public static final long amount = 100L;
     public static final Money money = Money.of(amount, sourceCurrency);
     public static final Money exchangedMoney = Money.of(112_141, targetCurrency);
+    public static final String exchangeUnit = sourceCurrency.toExchangeUnit(targetCurrency);
 
     public static CurrentExchangeRateResponse exchangeRateResponse = CurrentExchangeRateResponse.builder()
             .timestamp(System.currentTimeMillis())

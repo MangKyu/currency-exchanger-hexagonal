@@ -13,6 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CurrencyTest {
 
     @Test
+    void 환전단위생성() {
+        final String result = sourceCurrency.toExchangeUnit(targetCurrency);
+        assertThat(result).isEqualTo("KRW/USD");
+    }
+
+    @Test
     void 출력이름생성() {
         final String result = sourceCurrency.toViewString();
         assertThat(result).isEqualTo("미국(USD)");
