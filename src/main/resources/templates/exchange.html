@@ -8,43 +8,48 @@
 
 <h1>환율 계산</h1>
 
-<table style="width:100%">
-    <tr>
-        <td>송금 국가</td>
-        <td>
-            <div>
-                <select name="sourceCurrency" id="sourceCurrency">
-                    <option th:each="sourceCurrency:${sourceCurrencies}" th:value="${sourceCurrency.name()}"
-                            th:text="${sourceCurrency.toViewString()}"></option>
-                </select>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>수취 국가</td>
-        <td>
-            <div>
-                <select name="targetCurrency" id="targetCurrency">
-                    <option th:each="targetCurrency:${targetCurrencies}" th:value="${targetCurrency.name()}"
-                            th:text="${targetCurrency.toViewString()}"></option>
-                </select>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>환율</td>
-        <td><span id="exchangeRateText">exchangeRateText</span> <span id="exchangeUnitText">exchangeUnitText</span></td>
-    </tr>
-    <tr>
-        <td>송금액</td>
-        <td>
-            <input type="text" id="amount" name="amount">
-        </td>
-    </tr>
-</table>
-<button>Submit</button>
+<div>
+    <table style="width:100%">
+        <tr>
+            <td>송금 국가</td>
+            <td>
+                <div>
+                    <select name="sourceCurrency" id="sourceCurrency">
+                        <option th:each="sourceCurrency:${sourceCurrencies}" th:value="${sourceCurrency.name()}"
+                                th:text="${sourceCurrency.toViewString()}"></option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>수취 국가</td>
+            <td>
+                <div>
+                    <select name="targetCurrency" id="targetCurrency">
+                        <option th:each="targetCurrency:${targetCurrencies}" th:value="${targetCurrency.name()}"
+                                th:text="${targetCurrency.toViewString()}"></option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>환율</td>
+            <td><span id="exchangeRateText">exchangeRateText</span> <span id="exchangeUnitText">exchangeUnitText</span>
+            </td>
+        </tr>
+        <tr>
+            <td>송금액</td>
+            <td>
+                <input type="text" id="amount" name="amount">
+            </td>
+        </tr>
+    </table>
+    <button id="exchangeButton">Submit</button>
+</div>
+<div id="resultDiv" style="display: none">
+    <span>수취 금액은 <span id="resultText">100</span> <span id="currencyText">USD</span>입니다.</span>
+</div>
 
-<span>수취 금액은 <span id="result">100</span> <span id="currency">USD</span>입니다.</span>
 
 <script src="/static/js/jquery-3.6.0.min.js"></script>
 <script src="/static/js/exchange.js"></script>

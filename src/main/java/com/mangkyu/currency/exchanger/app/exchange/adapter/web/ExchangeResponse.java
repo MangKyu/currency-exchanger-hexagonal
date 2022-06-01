@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor(force = true)
 class ExchangeResponse {
 
-    private final Long amount;
+    private final String amount;
     private final Currency currency;
 
 }

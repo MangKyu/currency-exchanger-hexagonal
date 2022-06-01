@@ -23,7 +23,9 @@ class ExchangeAdapter {
                 Money.of(exchangeRequest.getAmount(), Currency.USD),
                 exchangeRequest.getTargetCurrency());
 
-        return ResponseEntity.ok(new ExchangeResponse(exchangedMoney.toLong(), exchangedMoney.getCurrency()));
+        return ResponseEntity.ok(new ExchangeResponse(
+                String.format("%.2f", (double) exchangedMoney.toLong()),
+                exchangedMoney.getCurrency()));
     }
 
 }

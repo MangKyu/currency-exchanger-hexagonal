@@ -6,25 +6,49 @@ $(document).ready(function(){
         getExchangeRate();
     });
 
+    $("#exchangeButton").on('click', function () {
+        exchange();
+    });
+
 });
 
 function getExchangeRate() {
-
     $.ajax({
         url: "/api/exchange-rates",
+        type: "GET",
         data: {
             "source": $("#sourceCurrency").val(),
             "target": $("#targetCurrency").val(),
         },
-        type: "GET",
         success: function(response) {
             $("#exchangeRateText").text(response.rate)
             $("#exchangeUnitText").text(response.unit)
         },
-        error: function(xhr) {
-
+        error: function(e) {
+            alert("Error Occurred");
         }
     });
 
 }
 
+function exchange() {
+    $.ajax({
+        url: "/api/exchange",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "amount": $("#amount").val(),
+            "sourceCurrency": $("#sourceCurrency").val(),
+            "targetCurrency": $("#targetCurrency").val()
+        }),
+        success: function(response) {
+            $("#resultDiv").show();
+            $("#resultText").text(response.amount)
+            $("#currencyText").text(response.currency)
+        },
+        error: function(e) {
+            alert("Error Occurred");
+            $("#resultDiv").hide();
+        }
+    });
+}
