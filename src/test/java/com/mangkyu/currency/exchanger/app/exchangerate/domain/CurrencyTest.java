@@ -5,10 +5,30 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import java.util.List;
+
 import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CurrencyTest {
+
+    @Test
+    void 출력이름생성() {
+        final String result = sourceCurrency.toViewString();
+        assertThat(result).isEqualTo("미국(USD)");
+    }
+
+    @Test
+    void 환전소스화폐조회() {
+        final List<Currency> result = Currency.sourceCurrencies();
+        assertThat(result.size()).isEqualTo(1);
+    }
+
+    @Test
+    void 환전대상화폐조회() {
+        final List<Currency> result = Currency.targetCurrencies();
+        assertThat(result.size()).isEqualTo(3);
+    }
 
     @Test
     void quoteKey생성() {
