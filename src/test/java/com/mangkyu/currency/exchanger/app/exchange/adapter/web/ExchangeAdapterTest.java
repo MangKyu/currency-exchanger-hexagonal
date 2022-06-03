@@ -45,12 +45,32 @@ class ExchangeAdapterTest {
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk())
-                .andExpect(jsonPath("amount").value(exchangedMoney.getAmount()))
+                .andExpect(jsonPath("amount").value(formattedExchangedMoneyAmount))
                 .andExpect(jsonPath("currency").value(exchangedMoney.getCurrency().name()));
     }
 
     @ParameterizedTest
     @CsvSource({"-1,USD,KRW", "0,USD,KRW"})
+    void 환전실패_잘못된파라미터_양수가아님(final Long amount, final Currency source, final Currency target) throws Exception {
+        final ExchangeRequest exchangeRequest = ExchangeRequest.builder()
+                .amount(amount)
+                .sourceCurrency(source)
+                .targetCurrency(target)
+                .build();
+
+        final ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/api/exchange")
+                .content(new Gson().toJson(exchangeRequest))
+                .contentType(MediaType.APPLICATION_JSON));
+
+        result.andExpect(status().isBadRequest())
+                .andExpect(jsonPath("code").value(CommonErrorCode.INVALID_PARAMETER.name()))
+                .andExpect(jsonPath("message").value(CommonErrorCode.INVALID_PARAMETER.getMessage()))
+                .andExpect(jsonPath("errors[0].field").value("amount"))
+                .andExpect(jsonPath("errors[0].message").value("송금액이 바르지 않습니다."));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,,KRW", "2,KRW,"})
     void 환전실패_잘못된파라미터(final Long amount, final Currency source, final Currency target) throws Exception {
         final ExchangeRequest exchangeRequest = ExchangeRequest.builder()
                 .amount(amount)

@@ -35,7 +35,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             final HttpStatus status,
             final WebRequest request) {
         log.warn("handleMethodArgumentNotValid", e);
-        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, CommonErrorCode.INVALID_PARAMETER.getMessage());
+        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, CommonErrorCode.INVALID_PARAMETER.getMessage(), e);
+    }
+
+    private ResponseEntity<Object> handleExceptionInternal(final ErrorCode errorCode, final String message, final MethodArgumentNotValidException e) {
+        return ResponseEntity.status(errorCode.getHttpStatus())
+                .body(ErrorResponse.of(errorCode.name(), makeMessage(errorCode, message), e));
     }
 
     @ExceptionHandler({Exception.class})
@@ -43,7 +48,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         log.warn("handleAllException", e);
         return handleExceptionInternal(CommonErrorCode.INTERNAL_SERVER_ERROR, e.getMessage());
     }
-
 
     private ResponseEntity<Object> handleExceptionInternal(final ErrorCode errorCode, final String message) {
         return ResponseEntity.status(errorCode.getHttpStatus())

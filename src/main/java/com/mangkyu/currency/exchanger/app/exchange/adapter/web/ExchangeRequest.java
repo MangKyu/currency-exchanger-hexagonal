@@ -15,7 +15,7 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor(force = true)
 class ExchangeRequest {
 
-    @Positive
+    @Positive(message = "송금액이 바르지 않습니다.")
     private final Long amount;
 
     @NotNull
