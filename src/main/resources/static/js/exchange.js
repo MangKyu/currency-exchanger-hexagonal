@@ -46,8 +46,13 @@ function exchange() {
             $("#resultText").text(response.amount)
             $("#currencyText").text(response.currency)
         },
-        error: function(e) {
-            alert("Error Occurred");
+        error: function (e) {
+            if (e.responseJSON.errors) {
+                alert(e.responseJSON.errors[0].message);
+            } else {
+                alert("Error Occurred");
+            }
+
             $("#resultDiv").hide();
         }
     });
