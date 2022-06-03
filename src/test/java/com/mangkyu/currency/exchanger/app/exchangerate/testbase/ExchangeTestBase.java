@@ -1,5 +1,6 @@
 package com.mangkyu.currency.exchanger.app.exchangerate.testbase;
 
+import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.AddExchangeHistoryRequest;
 import com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis.CurrentExchangeRateResponse;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangePrice;
@@ -36,6 +37,13 @@ public final class ExchangeTestBase {
             .source(sourceCurrency)
             .target(targetCurrency)
             .price(new ExchangePrice(price))
+            .build();
+
+    public static AddExchangeHistoryRequest addExchangeHistoryRequest = AddExchangeHistoryRequest.builder()
+            .source(sourceCurrency)
+            .target(targetCurrency)
+            .rate(price)
+            .amount(amount)
             .build();
 
 }
