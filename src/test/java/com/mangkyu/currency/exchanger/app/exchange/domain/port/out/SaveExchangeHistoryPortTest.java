@@ -2,7 +2,7 @@ package com.mangkyu.currency.exchanger.app.exchange.domain.port.out;
 
 import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.AddExchangeHistoryRequest;
 import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.ExchangeHistoryPersistenceRepository;
-import com.mangkyu.currency.exchanger.app.exchange.application.ExchangeHistoryService;
+import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.ExchangeHistoryPersistenceAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ class SaveExchangeHistoryPortTest {
 
     @BeforeEach
     void init() {
-        target = new ExchangeHistoryService(repository);
+        target = new ExchangeHistoryPersistenceAdapter(repository);
     }
 
     @Test
