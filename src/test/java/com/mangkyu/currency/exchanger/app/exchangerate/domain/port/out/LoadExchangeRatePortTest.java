@@ -7,8 +7,6 @@ import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateExcepti
 import com.mangkyu.currency.exchanger.app.exchangerate.testbase.TestExchangeRateApiCaller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 
@@ -16,7 +14,6 @@ import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeT
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@ExtendWith(MockitoExtension.class)
 class LoadExchangeRatePortTest {
 
     private LoadExchangeRatePort target;
