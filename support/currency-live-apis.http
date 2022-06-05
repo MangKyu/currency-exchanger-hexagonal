@@ -1,0 +1,11 @@
+# curl --request GET 'https://api.apilayer.com/currency_data/convert?base=USD&symbols=EUR,GBP,JPY&amount=5&date=2018-01-01'
+#--header 'apikey: YOUR API KEY'
+GET https://api.apilayer.com/currency_data/live?base=USD&symbols=EUR,GBP
+apikey: eipMczgiQB0BDmiHx2dX2dv9pPjGxXnh
+
+###
+
+
+
+###
+
