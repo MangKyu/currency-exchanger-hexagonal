@@ -1,15 +1,11 @@
 package com.mangkyu.currency.exchanger.app.exchange.adapter.web;
 
-import com.mangkyu.currency.exchanger.app.common.errors.CommonErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.ExchangeUseCase;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.money.domain.Money;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

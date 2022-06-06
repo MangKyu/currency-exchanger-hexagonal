@@ -1,18 +1,10 @@
 package com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis;
 
 import com.google.gson.Gson;
-import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateErrorCode;
-import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateException;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Profile("local")
 @Component

@@ -1,9 +1,9 @@
 package com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis;
 
 import com.mangkyu.currency.exchanger.app.exchangerate.converter.ExchangeRateConverter;
-import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRatePort;
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

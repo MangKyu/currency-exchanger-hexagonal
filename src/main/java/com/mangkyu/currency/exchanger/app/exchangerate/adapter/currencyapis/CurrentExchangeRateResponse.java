@@ -1,8 +1,8 @@
 package com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis;
 
-import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateErrorCode;
 import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateException;
+import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

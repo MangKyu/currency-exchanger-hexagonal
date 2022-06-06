@@ -1,6 +1,5 @@
 package com.mangkyu.currency.exchanger.app.exchange.application;
 
-import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.AddExchangeHistoryRequest;
 import com.mangkyu.currency.exchanger.app.exchange.converter.ExchangeConverter;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.ExchangeUseCase;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryPort;
