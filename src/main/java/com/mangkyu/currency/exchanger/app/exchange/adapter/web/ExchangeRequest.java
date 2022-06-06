@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -15,7 +16,10 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor(force = true)
 class ExchangeRequest {
 
-    @Positive(message = "송금액이 바르지 않습니다.")
+    public static final String INVALID_AMOUNT_MESSAGE = "송금액이 바르지 않습니다.";
+
+    @Max(value = 10000, message = INVALID_AMOUNT_MESSAGE)
+    @Positive(message = INVALID_AMOUNT_MESSAGE)
     private final Long amount;
 
     @NotNull
