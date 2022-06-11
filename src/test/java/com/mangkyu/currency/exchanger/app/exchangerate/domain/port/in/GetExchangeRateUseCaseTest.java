@@ -21,9 +21,9 @@ class GetExchangeRateUseCaseTest {
 
     @Test
     void 환율조회성공() {
-        final double result = target.getExchangeRate(sourceCurrency, targetCurrency);
+        final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
-        assertThat(result).isEqualTo(price);
+        assertThat(result.getPrice()).isEqualTo(price);
     }
 
     private static class TestLoadExchangePort implements LoadExchangeRatePort {

@@ -27,12 +27,19 @@ class MoneyTest {
     }
 
     @Test
-    void 환전테스트() {
+    void 환전() {
         final Money result = money.exchange(price, targetCurrency);
 
         assertThat(result.getCurrency()).isEqualTo(exchangedMoney.getCurrency());
         assertThat(result.toLong()).isEqualTo(exchangedMoney.toLong());
         assertThat(result).isEqualTo(exchangedMoney);
+    }
+
+    @Test
+    void 데시말포맷으로변환() {
+        final String result = new Money(1_112_141, sourceCurrency).toFormattedAmount();
+
+        assertThat(result).isEqualTo("1,112,141.00");
     }
 
 }

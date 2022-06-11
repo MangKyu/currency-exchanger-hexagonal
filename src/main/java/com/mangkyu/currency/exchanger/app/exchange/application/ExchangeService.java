@@ -5,6 +5,7 @@ import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.ExchangeUseCas
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryPort;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeException;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.in.GetExchangeRateUseCase;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.money.domain.Money;
@@ -24,10 +25,10 @@ public class ExchangeService implements ExchangeUseCase {
             throw new ExchangeException(ExchangeErrorCode.INVALID_TARGET_CURRENCY);
         }
 
-        final double exchangeRate = getExchangeRateUseCase.getExchangeRate(money.getCurrency(), target);
-        final Money exchangedMoney = money.exchange(exchangeRate, target);
+        final ExchangeRate exchangeRate = getExchangeRateUseCase.getExchangeRate(money.getCurrency(), target);
+        final Money exchangedMoney = money.exchange(exchangeRate.getPrice(), target);
 
-        saveExchangeHistoryPort.add(ExchangeConverter.INSTANCE.toAddExchangeHistoryRequest(money, target, exchangeRate));
+        saveExchangeHistoryPort.add(ExchangeConverter.INSTANCE.toAddExchangeHistoryRequest(money, target, exchangeRate.getPrice()));
 
         return exchangedMoney;
     }

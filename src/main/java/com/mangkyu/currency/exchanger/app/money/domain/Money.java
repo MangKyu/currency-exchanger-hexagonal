@@ -5,6 +5,7 @@ import com.mangkyu.currency.exchanger.app.money.error.MoneyException;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 @Getter
 @Builder
@@ -14,6 +15,7 @@ public class Money {
 
     private final BigDecimal amount;
     private final Currency currency;
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###.00");
 
     public Money(final long amount, final Currency currency) {
         if (amount <= 0) {
@@ -31,6 +33,10 @@ public class Money {
     public Money exchange(final double exchangeRate, final Currency target) {
         final long amount = (long) (this.amount.longValue() * exchangeRate);
         return new Money(amount, target);
+    }
+
+    public String toFormattedAmount() {
+        return DECIMAL_FORMAT.format(amount);
     }
 
 }
