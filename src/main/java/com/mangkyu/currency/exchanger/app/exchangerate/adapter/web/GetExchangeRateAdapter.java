@@ -20,10 +20,14 @@ class GetExchangeRateAdapter {
         final double exchangeRate = getExchangeRateUseCase.getExchangeRate(source, target);
 
         final GetExchangeRateResponse response = new GetExchangeRateResponse(
-                new DecimalFormat("#,###.00").format(exchangeRate),
+                formatRate(exchangeRate),
                 source.toExchangeUnit(target));
 
         return ResponseEntity.ok(response);
+    }
+
+    private String formatRate(final double exchangeRate) {
+        return new DecimalFormat("#,###.00").format(exchangeRate);
     }
 
 }

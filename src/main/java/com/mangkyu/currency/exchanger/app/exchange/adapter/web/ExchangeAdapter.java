@@ -26,7 +26,12 @@ class ExchangeAdapter {
                 exchangeRequest.getTargetCurrency());
 
         return ResponseEntity.ok(new ExchangeResponse(
-                new DecimalFormat("#,###.00").format(exchangedMoney.toLong()),
+                formatAmount(exchangedMoney.toLong()),
                 exchangedMoney.getCurrency()));
     }
+
+    private String formatAmount(final Long amount) {
+        return new DecimalFormat("#,###.00").format(amount);
+    }
+
 }
