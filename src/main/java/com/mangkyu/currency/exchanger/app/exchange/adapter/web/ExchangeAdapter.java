@@ -22,7 +22,7 @@ class ExchangeAdapter {
     @PostMapping("/api/exchange")
     public ResponseEntity<ExchangeResponse> exchange(@RequestBody @Valid final ExchangeRequest exchangeRequest) {
         final Money exchangedMoney = exchangeUseCase.exchangeMoney(
-                Money.of(exchangeRequest.getAmount(), exchangeRequest.getSourceCurrency()),
+                new Money(exchangeRequest.getAmount(), exchangeRequest.getSourceCurrency()),
                 exchangeRequest.getTargetCurrency());
 
         return ResponseEntity.ok(new ExchangeResponse(

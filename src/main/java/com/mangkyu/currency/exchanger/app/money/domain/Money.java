@@ -15,12 +15,13 @@ public class Money {
     private final BigDecimal amount;
     private final Currency currency;
 
-    public static Money of(final long amount, final Currency currency) {
+    public Money(final long amount, final Currency currency) {
         if (amount <= 0) {
             throw new MoneyException(MoneyErrorCode.INVALID_AMOUNT);
         }
 
-        return new Money(BigDecimal.valueOf(amount), currency);
+        this.amount = BigDecimal.valueOf(amount);
+        this.currency = currency;
     }
 
     public long toLong() {
@@ -29,7 +30,7 @@ public class Money {
 
     public Money exchange(final double exchangeRate, final Currency target) {
         final long amount = (long) (this.amount.longValue() * exchangeRate);
-        return Money.of(amount, target);
+        return new Money(amount, target);
     }
 
 }

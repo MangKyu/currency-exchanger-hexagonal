@@ -22,8 +22,8 @@ public final class ExchangeTestBase {
     public static final String formattedPrice = "1,121.42";
 
     public static final long amount = 100L;
-    public static final Money money = Money.of(amount, sourceCurrency);
-    public static final Money exchangedMoney = Money.of(112_141, targetCurrency);
+    public static final Money money = new Money(amount, sourceCurrency);
+    public static final Money exchangedMoney = new Money(112_141, targetCurrency);
     public static final String formattedExchangedMoneyAmount = "112,141.00";
     public static final String exchangeUnit = sourceCurrency.toExchangeUnit(targetCurrency);
 

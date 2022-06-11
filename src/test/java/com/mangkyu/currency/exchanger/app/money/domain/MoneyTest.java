@@ -15,14 +15,14 @@ class MoneyTest {
     @ParameterizedTest
     @ValueSource(longs = {-1, 0, -10000})
     void Money생성실패_잘못된금액(final long amount) {
-        final MoneyException result = assertThrows(MoneyException.class, () -> Money.of(amount, sourceCurrency));
+        final MoneyException result = assertThrows(MoneyException.class, () -> new Money(amount, sourceCurrency));
         assertThat(result.getErrorCode()).isEqualTo(MoneyErrorCode.INVALID_AMOUNT);
     }
 
     @ParameterizedTest
     @ValueSource(longs = {1, 2, 3})
     void Money생성(final long amount) {
-        final Money result = Money.of(amount, sourceCurrency);
+        final Money result = new Money(amount, sourceCurrency);
         assertThat(result).isNotNull();
     }
 
