@@ -17,13 +17,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CommonException.class)
-    public ResponseEntity<Object> handleBaseException(final CommonException e) {
+    public ResponseEntity<ErrorResponse> handleBaseException(final CommonException e) {
         log.warn("handleBaseException", e);
         return handleExceptionInternal(e.getErrorCode(), e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Object> handleMethodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException e) {
+    public ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException e) {
         log.warn("handleMethodArgumentTypeMismatchException", e);
         return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, "");
     }
@@ -35,21 +35,23 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             final HttpStatus status,
             final WebRequest request) {
         log.warn("handleMethodArgumentNotValid", e);
-        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, CommonErrorCode.INVALID_PARAMETER.getMessage(), e);
+        return handleExceptionInternal(e, CommonErrorCode.INVALID_PARAMETER.getMessage());
     }
 
-    private ResponseEntity<Object> handleExceptionInternal(final ErrorCode errorCode, final String message, final MethodArgumentNotValidException e) {
+    private ResponseEntity<Object> handleExceptionInternal(final MethodArgumentNotValidException e, final String message) {
+        final CommonErrorCode errorCode = CommonErrorCode.INVALID_PARAMETER;
+
         return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(ErrorResponse.of(errorCode.name(), makeMessage(errorCode, message), e));
+                .body(ErrorResponse.of(errorCode.name(), errorCode.getMessage(), e));
     }
 
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<Object> handleAllException(final Exception e) {
+    public ResponseEntity<ErrorResponse> handleAllException(final Exception e) {
         log.warn("handleAllException", e);
         return handleExceptionInternal(CommonErrorCode.INTERNAL_SERVER_ERROR, e.getMessage());
     }
 
-    private ResponseEntity<Object> handleExceptionInternal(final ErrorCode errorCode, final String message) {
+    private ResponseEntity<ErrorResponse> handleExceptionInternal(final ErrorCode errorCode, final String message) {
         return ResponseEntity.status(errorCode.getHttpStatus())
                 .body(ErrorResponse.of(errorCode.name(), makeMessage(errorCode, message)));
     }
