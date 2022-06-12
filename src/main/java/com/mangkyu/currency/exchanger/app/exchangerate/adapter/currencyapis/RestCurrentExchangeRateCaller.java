@@ -47,15 +47,14 @@ class RestCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
 
     private String createApiUri(final Currency source, final Currency target) {
         return UriComponentsBuilder.fromHttpUrl(properties.getUri())
-                .queryParam("base", source.name())
-                .queryParam("symbols", target.name())
+                .queryParam("source", source.name())
+                .queryParam("currencies", target.name())
                 .encode()
                 .toUriString();
     }
 
     private HttpHeaders createHttpHeaders() {
         final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add(API_KEY, properties.getKey());
         return headers;
     }
