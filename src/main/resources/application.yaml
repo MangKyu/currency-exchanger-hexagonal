@@ -3,3 +3,6 @@ exchange:
     api:
       uri: https://api.apilayer.com/currency_data/live
       key: eipMczgiQB0BDmiHx2dX2dv9pPjGxXnh
+
+server:
+  port: 8086
