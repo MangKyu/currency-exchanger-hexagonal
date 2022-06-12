@@ -1,6 +1,7 @@
 package com.mangkyu.currency.exchanger.app.common.errors;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    private static final String HANDLE_COMMON_EXCEPTION_MESSAGE = "handleCommonException";
+
     @ExceptionHandler(CommonException.class)
     public ResponseEntity<ErrorResponse> handleBaseException(final CommonException e) {
-        log.warn("handleBaseException", e);
+        printLog(e);
         return handleExceptionInternal(e.getErrorCode(), e.getMessage());
     }
 
@@ -60,6 +63,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return StringUtils.hasText(message)
                 ? message
                 : errorCode.getMessage();
+    }
+
+    private void printLog(final CommonException e) {
+        if (e.getLogLevel() == LogLevel.ERROR) {
+            log.error(HANDLE_COMMON_EXCEPTION_MESSAGE, e);
+        } else if (e.getLogLevel() == LogLevel.WARN) {
+            log.warn(HANDLE_COMMON_EXCEPTION_MESSAGE, e);
+        } else if (e.getLogLevel() == LogLevel.DEBUG) {
+            log.debug(HANDLE_COMMON_EXCEPTION_MESSAGE, e);
+        } else if (e.getLogLevel() == LogLevel.TRACE) {
+            log.trace(HANDLE_COMMON_EXCEPTION_MESSAGE, e);
+        } else {
+            log.info(HANDLE_COMMON_EXCEPTION_MESSAGE, e);
+        }
     }
 
 }

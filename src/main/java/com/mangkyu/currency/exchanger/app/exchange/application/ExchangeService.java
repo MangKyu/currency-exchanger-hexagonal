@@ -10,6 +10,7 @@ import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.in.GetExchang
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import com.mangkyu.currency.exchanger.app.money.domain.Money;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +23,7 @@ public class ExchangeService implements ExchangeUseCase {
     @Override
     public Money exchangeMoney(final Money money, final Currency target) {
         if (!Currency.canBeTarget(target)) {
-            throw new ExchangeException(ExchangeErrorCode.INVALID_TARGET_CURRENCY);
+            throw new ExchangeException(LogLevel.INFO, ExchangeErrorCode.INVALID_TARGET_CURRENCY);
         }
 
         final ExchangeRate exchangeRate = getExchangeRateUseCase.getExchangeRate(money.getCurrency(), target);

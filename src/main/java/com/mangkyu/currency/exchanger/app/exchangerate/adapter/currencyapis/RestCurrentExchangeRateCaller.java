@@ -5,6 +5,7 @@ import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateErrorCo
 import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateException;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -28,7 +29,7 @@ class RestCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
         final String result = callApis(source, target);
 
         if (!isSuccess(result)) {
-            throw new ExchangeRateException(ExchangeRateErrorCode.FETCH_EXCHANGE_RATE_FAIL);
+            throw new ExchangeRateException(LogLevel.WARN, ExchangeRateErrorCode.FETCH_EXCHANGE_RATE_FAIL);
         }
 
         return gson.fromJson(result, CurrentExchangeRateResponse.class);

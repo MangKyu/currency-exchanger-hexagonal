@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class CurrentExchangeRateResponse {
 
     public double getRate(final String key) {
         if (quotes == null || quotes.isEmpty()) {
-            throw new ExchangeRateException(ExchangeRateErrorCode.FETCH_EXCHANGE_RATE_FAIL);
+            throw new ExchangeRateException(LogLevel.WARN, ExchangeRateErrorCode.FETCH_EXCHANGE_RATE_FAIL);
         }
 
         return quotes.get(key);

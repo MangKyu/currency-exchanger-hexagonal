@@ -3,6 +3,7 @@ package com.mangkyu.currency.exchanger.app.money.domain;
 import com.mangkyu.currency.exchanger.app.money.error.MoneyErrorCode;
 import com.mangkyu.currency.exchanger.app.money.error.MoneyException;
 import lombok.*;
+import org.springframework.boot.logging.LogLevel;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -19,7 +20,7 @@ public class Money {
 
     public Money(final long amount, final Currency currency) {
         if (amount <= 0) {
-            throw new MoneyException(MoneyErrorCode.INVALID_AMOUNT);
+            throw new MoneyException(LogLevel.INFO, MoneyErrorCode.INVALID_AMOUNT);
         }
 
         this.amount = BigDecimal.valueOf(amount);
