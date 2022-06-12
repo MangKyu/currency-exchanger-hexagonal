@@ -16,7 +16,7 @@ class ExchangeRateTest {
                 targetCurrency,
                 new ExchangePrice(112_1.419945));
 
-        final String result = exchangeRate.toFormattedRate();;
+        final String result = exchangeRate.toFormattedRate();
 
         assertThat(result).isEqualTo("1,121.42");
     }

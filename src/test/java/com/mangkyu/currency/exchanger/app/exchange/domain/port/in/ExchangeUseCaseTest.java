@@ -44,7 +44,7 @@ class ExchangeUseCaseTest {
 
     @Test
     void 환전성공() {
-        doReturn(exchangeRate.getPrice())
+        doReturn(exchangeRate)
                 .when(getExchangeRateUseCase)
                 .getExchangeRate(sourceCurrency, targetCurrency);
 

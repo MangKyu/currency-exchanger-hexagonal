@@ -24,7 +24,7 @@ public class ExchangeRate {
     }
 
     public String toFormattedRate() {
-        return DECIMAL_FORMAT.format(price);
+        return DECIMAL_FORMAT.format(price.getPrice());
     }
 
 }

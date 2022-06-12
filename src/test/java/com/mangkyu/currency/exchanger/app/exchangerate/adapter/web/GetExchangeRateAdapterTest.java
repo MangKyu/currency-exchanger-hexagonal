@@ -27,7 +27,7 @@ class GetExchangeRateAdapterTest {
 
     @Test
     void 환율정보조회API호출() throws Exception {
-        doReturn(price)
+        doReturn(exchangeRate)
                 .when(exchangeRateUseCase)
                 .getExchangeRate(sourceCurrency, targetCurrency);
 
