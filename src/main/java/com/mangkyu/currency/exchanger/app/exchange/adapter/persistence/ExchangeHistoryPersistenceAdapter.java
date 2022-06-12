@@ -12,7 +12,7 @@ public class ExchangeHistoryPersistenceAdapter implements SaveExchangeHistoryPor
     private final ExchangeHistoryPersistenceRepository repository;
 
     @Override
-    public void add(final AddExchangeHistoryRequest request) {
+    public void save(final AddExchangeHistoryRequest request) {
         final ExchangeHistoryEntity result = ExchangeConverter.INSTANCE.toExchangeHistoryEntity(request);
         repository.save(result);
     }

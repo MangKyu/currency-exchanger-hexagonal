@@ -51,7 +51,7 @@ class ExchangeUseCaseTest {
         final Money result = target.exchangeMoney(money, targetCurrency);
         assertThat(result).isEqualTo(exchangedMoney);
 
-        verify(saveExchangeHistoryPort, times(1)).add(any(AddExchangeHistoryRequest.class));
+        verify(saveExchangeHistoryPort, times(1)).save(any(AddExchangeHistoryRequest.class));
     }
 
 }

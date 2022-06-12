@@ -33,7 +33,7 @@ class SaveExchangeHistoryPortTest {
                 .amount(amount)
                 .build();
 
-        target.add(request);
+        target.save(request);
 
         assertThat(repository.findAll().size()).isOne();
     }

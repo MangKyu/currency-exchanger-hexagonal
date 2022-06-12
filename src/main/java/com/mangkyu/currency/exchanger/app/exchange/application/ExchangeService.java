@@ -28,7 +28,7 @@ public class ExchangeService implements ExchangeUseCase {
         final ExchangeRate exchangeRate = getExchangeRateUseCase.getExchangeRate(money.getCurrency(), target);
         final Money exchangedMoney = money.exchange(exchangeRate.getPrice(), target);
 
-        saveExchangeHistoryPort.add(ExchangeConverter.INSTANCE.toAddExchangeHistoryRequest(money, target, exchangeRate.getPrice()));
+        saveExchangeHistoryPort.save(ExchangeConverter.INSTANCE.toAddExchangeHistoryRequest(money, target, exchangeRate.getPrice()));
 
         return exchangedMoney;
     }

@@ -4,6 +4,6 @@ import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.AddExchan
 
 public interface SaveExchangeHistoryPort {
 
-    void add(final AddExchangeHistoryRequest request);
+    void save(final AddExchangeHistoryRequest request);
 
 }
