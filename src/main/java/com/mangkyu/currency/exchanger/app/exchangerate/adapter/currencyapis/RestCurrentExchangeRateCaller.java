@@ -23,6 +23,7 @@ class RestCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
     private final RestTemplate restTemplate;
     private final Gson gson;
     private final CurrentExchangeRateProperties properties;
+    private static final String API_KEY = "apikey";
 
     @Override
     public CurrentExchangeRateResponse call(final Currency source, final Currency target) {
@@ -55,7 +56,7 @@ class RestCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
     private HttpHeaders createHttpHeaders() {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("apikey", properties.getKey());
+        headers.add(API_KEY, properties.getKey());
         return headers;
     }
 
