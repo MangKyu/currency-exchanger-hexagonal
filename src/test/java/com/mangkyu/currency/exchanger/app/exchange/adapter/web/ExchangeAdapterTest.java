@@ -50,7 +50,7 @@ class ExchangeAdapterTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"-1,USD,KRW", "0,USD,KRW"})
+    @CsvSource({"-1,USD,KRW", "0,USD,KRW", "10001,USD,KRW"})
     void 환전실패_잘못된파라미터_양수가아님(final Long amount, final Currency source, final Currency target) throws Exception {
         final ExchangeRequest exchangeRequest = ExchangeRequest.builder()
                 .amount(amount)
