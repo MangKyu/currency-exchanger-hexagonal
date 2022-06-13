@@ -3,11 +3,13 @@ package com.mangkyu.currency.exchanger.app.exchange.adapter.persistence;
 import com.mangkyu.currency.exchanger.app.exchange.converter.ExchangeConverter;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryPort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Repository
+@Transactional
 @RequiredArgsConstructor
-public class ExchangeHistoryPersistenceAdapter implements SaveExchangeHistoryPort {
+public class ExchangeHistoryWritePersistenceAdapter implements SaveExchangeHistoryPort {
 
     private final ExchangeHistoryPersistenceRepository repository;
 
