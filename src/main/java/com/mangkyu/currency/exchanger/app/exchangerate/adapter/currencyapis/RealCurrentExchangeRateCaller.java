@@ -18,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Profile("!local")
 @Component
 @RequiredArgsConstructor
-class RestCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
+class RealCurrentExchangeRateCaller implements CurrentExchangeRateCaller {
 
     private final RestTemplate restTemplate;
     private final Gson gson;

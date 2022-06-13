@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("notlocal")
-@SpringBootTest(classes = {RestCurrentExchangeRateCallerActivationTest.RestTestConfig.class})
-class RestCurrentExchangeRateCallerActivationTest {
+@SpringBootTest(classes = {RealCurrentExchangeRateCallerActivationTest.RestTestConfig.class})
+class RealCurrentExchangeRateCallerActivationTest {
 
     @Autowired
     private CurrentExchangeRateCaller target;
@@ -21,7 +21,7 @@ class RestCurrentExchangeRateCallerActivationTest {
     @Test
     void Local이아니면RestCurrentExchangeRateCaller이활성화() {
         assertThat(target).isNotNull()
-                .isInstanceOf(RestCurrentExchangeRateCaller.class);
+                .isInstanceOf(RealCurrentExchangeRateCaller.class);
     }
 
     @ComponentScan("com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis")

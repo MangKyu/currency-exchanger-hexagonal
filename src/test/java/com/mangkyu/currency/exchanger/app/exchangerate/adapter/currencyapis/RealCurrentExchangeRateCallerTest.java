@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-class RestCurrentExchangeRateCallerTest {
+class RealCurrentExchangeRateCallerTest {
 
     private CurrentExchangeRateCaller target;
 
@@ -27,7 +27,7 @@ class RestCurrentExchangeRateCallerTest {
     @BeforeEach
     void init() {
         this.restTemplate = mock(RestTemplate.class);
-        target = new RestCurrentExchangeRateCaller(restTemplate, new Gson(), new CurrentExchangeRateProperties("https://www.naver.com", "mykey"));
+        target = new RealCurrentExchangeRateCaller(restTemplate, new Gson(), new CurrentExchangeRateProperties("https://www.naver.com", "mykey"));
     }
 
     @Test
