@@ -5,7 +5,7 @@ import org.springframework.boot.logging.LogLevel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -28,7 +28,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException e) {
         log.warn("handleMethodArgumentTypeMismatchException", e);
-        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, "");
+        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, CommonErrorCode.INVALID_PARAMETER.getMessage());
     }
 
     @Override
@@ -38,10 +38,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             final HttpStatus status,
             final WebRequest request) {
         log.warn("handleMethodArgumentNotValid", e);
-        return handleExceptionInternal(e, CommonErrorCode.INVALID_PARAMETER.getMessage());
+        return handleExceptionInternal(e);
     }
 
-    private ResponseEntity<Object> handleExceptionInternal(final MethodArgumentNotValidException e, final String message) {
+    private ResponseEntity<Object> handleExceptionInternal(final MethodArgumentNotValidException e) {
         final CommonErrorCode errorCode = CommonErrorCode.INVALID_PARAMETER;
 
         return ResponseEntity.status(errorCode.getHttpStatus())
@@ -51,18 +51,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ErrorResponse> handleAllException(final Exception e) {
         log.warn("handleAllException", e);
-        return handleExceptionInternal(CommonErrorCode.INTERNAL_SERVER_ERROR, e.getMessage());
+        return handleExceptionInternal(CommonErrorCode.INTERNAL_SERVER_ERROR, CommonErrorCode.INTERNAL_SERVER_ERROR.getMessage());
     }
 
     private ResponseEntity<ErrorResponse> handleExceptionInternal(final ErrorCode errorCode, final String message) {
         return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(ErrorResponse.of(errorCode.name(), makeMessage(errorCode, message)));
-    }
-
-    private String makeMessage(final ErrorCode errorCode, final String message) {
-        return StringUtils.hasText(message)
-                ? message
-                : errorCode.getMessage();
+                .body(ErrorResponse.of(errorCode.name(), message));
     }
 
     private void printLog(final CommonException e) {
@@ -77,6 +71,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         } else {
             log.info(HANDLE_COMMON_EXCEPTION_MESSAGE, e);
         }
+    }
+
+    protected ResponseEntity<Object> handleExceptionInternal(
+            Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        super.handleExceptionInternal(ex, body, headers, status, request);
+
+        return ResponseEntity.status(status)
+                .headers(headers)
+                .body(ErrorResponse.of(status.name(), status.getReasonPhrase()));
     }
 
 }
