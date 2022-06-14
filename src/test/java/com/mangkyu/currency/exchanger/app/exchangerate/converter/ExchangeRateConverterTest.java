@@ -7,7 +7,6 @@ import com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase
 import org.junit.jupiter.api.Test;
 
 import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.*;
-import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.addExchangeRateHistoryRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ExchangeRateConverterTest {
@@ -25,11 +24,23 @@ class ExchangeRateConverterTest {
     @Test
     void ExchangeRateHistoryEntitry로변환() {
         final AddExchangeRateHistoryRequest request = ExchangeTestBase.addExchangeRateHistoryRequest;
-        final ExchangeRateHistoryEntity result = ExchangeRateConverter.INSTANCE.toAddExchangeRateHistoryRequest(request);
+        final ExchangeRateHistoryEntity result = ExchangeRateConverter.INSTANCE.toExchangeRateHistoryEntity(request);
 
         assertThat(result).isNotNull();
         assertThat(result.getSource()).isEqualTo(request.getSource());
         assertThat(result.getTarget()).isEqualTo(request.getTarget());
         assertThat(result.getPrice()).isEqualTo(request.getPrice());
+    }
+
+    @Test
+    void AddExchangeRateHistoryRequest로변환() {
+
+        final ExchangeRate exchangeRate = ExchangeTestBase.exchangeRate;
+        final AddExchangeRateHistoryRequest result = ExchangeRateConverter.INSTANCE.toAddExchangeRateHistoryRequest(exchangeRate);
+
+        assertThat(result).isNotNull();
+        assertThat(result.getSource()).isEqualTo(exchangeRate.getSource());
+        assertThat(result.getTarget()).isEqualTo(exchangeRate.getTarget());
+        assertThat(result.getPrice()).isEqualTo(exchangeRate.getPrice());
     }
 }

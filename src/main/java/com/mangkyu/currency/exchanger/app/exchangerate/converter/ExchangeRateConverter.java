@@ -25,5 +25,7 @@ public interface ExchangeRateConverter {
                 .build();
     }
 
-    ExchangeRateHistoryEntity toAddExchangeRateHistoryRequest(AddExchangeRateHistoryRequest request);
+    ExchangeRateHistoryEntity toExchangeRateHistoryEntity(AddExchangeRateHistoryRequest request);
+
+    AddExchangeRateHistoryRequest toAddExchangeRateHistoryRequest(final ExchangeRate exchangeRate);
 }
