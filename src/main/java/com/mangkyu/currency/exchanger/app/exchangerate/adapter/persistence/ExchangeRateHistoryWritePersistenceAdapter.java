@@ -15,7 +15,7 @@ public class ExchangeRateHistoryWritePersistenceAdapter implements SaveExchangeR
 
     @Override
     public void save(final AddExchangeRateHistoryRequest request) {
-        final ExchangeRateHistoryEntity entity = ExchangeRateConverter.INSTANCE.toAddExchangeRateHistoryRequest(request);
+        final ExchangeRateHistoryEntity entity = ExchangeRateConverter.INSTANCE.toExchangeRateHistoryEntity(request);
         repository.save(entity);
     }
 }
