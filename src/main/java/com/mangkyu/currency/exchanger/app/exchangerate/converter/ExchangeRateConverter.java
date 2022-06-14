@@ -1,6 +1,8 @@
 package com.mangkyu.currency.exchanger.app.exchangerate.converter;
 
 import com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis.CurrentExchangeRateResponse;
+import com.mangkyu.currency.exchanger.app.exchangerate.adapter.persistence.AddExchangeRateHistoryRequest;
+import com.mangkyu.currency.exchanger.app.exchangerate.adapter.persistence.ExchangeRateHistoryEntity;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangePrice;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
@@ -23,4 +25,5 @@ public interface ExchangeRateConverter {
                 .build();
     }
 
+    ExchangeRateHistoryEntity toAddExchangeRateHistoryRequest(AddExchangeRateHistoryRequest request);
 }
