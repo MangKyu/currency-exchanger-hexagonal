@@ -11,7 +11,7 @@ public class ExchangePrice {
     private final Double price;
 
     public ExchangePrice(final Double price) {
-        if (price <= 0) {
+        if (price < 0) {
             throw new ExchangeRateException(LogLevel.WARN, ExchangeRateErrorCode.FETCH_EXCHANGE_RATE_FAIL);
         }
 

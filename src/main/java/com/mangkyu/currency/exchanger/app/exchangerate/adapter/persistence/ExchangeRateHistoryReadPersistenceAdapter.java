@@ -1,5 +1,7 @@
 package com.mangkyu.currency.exchanger.app.exchangerate.adapter.persistence;
 
+import com.mangkyu.currency.exchanger.app.exchangerate.converter.ExchangeRateConverter;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateHistoryPort;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +16,19 @@ public class ExchangeRateHistoryReadPersistenceAdapter implements LoadExchangeRa
     private final ExchangeRateHistoryPersistenceRepository repository;
 
     @Override
-    public void loadLatest(final Currency sourceCurrency, final Currency targetCurrency) {
-        repository.findTopBySourceIsAndTargetIsOrderByCreatedAtDesc(sourceCurrency, targetCurrency);
+    public ExchangeRate loadLatest(final Currency source, final Currency target) {
+        final ExchangeRateHistoryEntity entity = repository.findTopBySourceIsAndTargetIsOrderByCreatedAtDesc(source, target)
+                .orElseGet(() -> createEmptyEntity(source, target));
+
+        return ExchangeRateConverter.INSTANCE.toExchangeRate(entity);
+    }
+
+    private ExchangeRateHistoryEntity createEmptyEntity(final Currency source, final Currency target) {
+        return ExchangeRateHistoryEntity.builder()
+                .source(source)
+                .target(target)
+                .price(0d)
+                .build();
     }
 
 }
