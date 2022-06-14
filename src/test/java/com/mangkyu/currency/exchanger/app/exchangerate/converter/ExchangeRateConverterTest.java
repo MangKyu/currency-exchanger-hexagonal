@@ -43,4 +43,16 @@ class ExchangeRateConverterTest {
         assertThat(result.getTarget()).isEqualTo(exchangeRate.getTarget());
         assertThat(result.getPrice()).isEqualTo(exchangeRate.getPrice());
     }
+
+    @Test
+    void ExchangeRateHistoryEntity에서ExchangeRate로변환() {
+        final ExchangeRateHistoryEntity entity = ExchangeRateConverter.INSTANCE.toExchangeRateHistoryEntity(addExchangeRateHistoryRequest);
+
+        final ExchangeRate result = ExchangeRateConverter.INSTANCE.toExchangeRate(entity);
+
+        assertThat(result).isNotNull();
+        assertThat(result.getSource()).isEqualTo(ExchangeTestBase.exchangeRate.getSource());
+        assertThat(result.getTarget()).isEqualTo(ExchangeTestBase.exchangeRate.getTarget());
+        assertThat(result.getPrice()).isEqualTo(ExchangeTestBase.exchangeRate.getPrice());
+    }
 }

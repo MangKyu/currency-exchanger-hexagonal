@@ -7,6 +7,8 @@ import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangePrice;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -25,7 +27,11 @@ public interface ExchangeRateConverter {
                 .build();
     }
 
+    @Mapping(source = "price", target = "price.price")
+    ExchangeRate toExchangeRate(final ExchangeRateHistoryEntity exchangeRateHistoryEntity);
+
     ExchangeRateHistoryEntity toExchangeRateHistoryEntity(AddExchangeRateHistoryRequest request);
 
     AddExchangeRateHistoryRequest toAddExchangeRateHistoryRequest(final ExchangeRate exchangeRate);
+
 }
