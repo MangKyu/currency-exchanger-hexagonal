@@ -28,13 +28,13 @@ class GetExchangeRateUseCaseTest {
     @Test
     void 환율조회성공() {
         doReturn(exchangeRate).when(loadExchangeRatePort)
-                .getExchangeRate(sourceCurrency, targetCurrency);
+                .loadExchangeRate(sourceCurrency, targetCurrency);
 
         final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
         assertThat(result.getPrice()).isEqualTo(price);
 
-        verify(loadExchangeRatePort, times(1)).getExchangeRate(sourceCurrency, targetCurrency);
+        verify(loadExchangeRatePort, times(1)).loadExchangeRate(sourceCurrency, targetCurrency);
         verify(saveExchangeRateHistoryPort, times(1)).save(any(AddExchangeRateHistoryRequest.class));
     }
 

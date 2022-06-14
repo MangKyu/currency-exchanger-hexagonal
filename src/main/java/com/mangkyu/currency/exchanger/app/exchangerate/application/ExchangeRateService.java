@@ -20,7 +20,7 @@ public class ExchangeRateService implements GetExchangeRateUseCase {
 
     @Override
     public ExchangeRate getExchangeRate(final Currency source, final Currency target) {
-        final Optional<ExchangeRate> optionalExchangeRate = loadExchangeRatePort.getExchangeRate(source, target);
+        final Optional<ExchangeRate> optionalExchangeRate = loadExchangeRatePort.loadExchangeRate(source, target);
         optionalExchangeRate.ifPresent(v -> exchangeRateHistoryPort.save(ExchangeRateConverter.INSTANCE.toAddExchangeRateHistoryRequest(v)));
         return optionalExchangeRate.get();
     }

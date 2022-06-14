@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface LoadExchangeRatePort {
 
-    Optional<ExchangeRate> getExchangeRate(final Currency source, final Currency target);
+    Optional<ExchangeRate> loadExchangeRate(final Currency source, final Currency target);
 
 }

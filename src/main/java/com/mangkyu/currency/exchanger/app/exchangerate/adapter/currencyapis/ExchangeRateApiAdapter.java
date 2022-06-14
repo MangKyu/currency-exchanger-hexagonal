@@ -19,7 +19,7 @@ public class ExchangeRateApiAdapter implements LoadExchangeRatePort {
     private final CurrentExchangeRateCaller exchangeRateCaller;
 
     @Override
-    public Optional<ExchangeRate> getExchangeRate(final Currency source, final Currency target) {
+    public Optional<ExchangeRate> loadExchangeRate(final Currency source, final Currency target) {
         try {
             final CurrentExchangeRateResponse response = exchangeRateCaller.call(source, target);
             return Optional.of(ExchangeRateConverter.INSTANCE.toExchangeRate(response, target));

@@ -28,7 +28,7 @@ class LoadExchangeRatePortTest {
 
     @Test
     void 환율정보조회실패_비어있는값() {
-        final ExchangeRateException result = assertThrows(ExchangeRateException.class, () -> target.getExchangeRate(sourceCurrency, targetCurrency));
+        final ExchangeRateException result = assertThrows(ExchangeRateException.class, () -> target.loadExchangeRate(sourceCurrency, targetCurrency));
 
         assertThat(result.getErrorCode()).isEqualTo(ExchangeRateErrorCode.FETCH_EXCHANGE_RATE_FAIL);
     }
@@ -37,7 +37,7 @@ class LoadExchangeRatePortTest {
     void 환율정보조회성공() {
         exchangeRateCaller.setQuotes(Collections.singletonMap(quoteKey, price));
 
-        final Optional<ExchangeRate> result = target.getExchangeRate(sourceCurrency, targetCurrency);
+        final Optional<ExchangeRate> result = target.loadExchangeRate(sourceCurrency, targetCurrency);
 
         assertThat(result.isPresent()).isTrue();
         assertThat(result.get().getPrice()).isEqualTo(price);
