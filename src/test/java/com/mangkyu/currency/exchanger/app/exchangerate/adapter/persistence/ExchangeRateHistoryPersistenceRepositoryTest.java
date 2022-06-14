@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.sourceCurrency;
 import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.targetCurrency;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,8 +18,8 @@ class ExchangeRateHistoryPersistenceRepositoryTest {
 
     @Test
     void temp() {
-        final ExchangeRateHistoryEntity result = target.findTopBySourceIsAndTargetIsOrderByCreatedAtDesc(sourceCurrency, targetCurrency);
-        assertThat(result).isNull();
+        final Optional<ExchangeRateHistoryEntity> result = target.findTopBySourceIsAndTargetIsOrderByCreatedAtDesc(sourceCurrency, targetCurrency);
+        assertThat(result.isPresent()).isFalse();
     }
 
 }
