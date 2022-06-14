@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
+import java.util.Optional;
 
 import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeTestBase.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,10 +37,10 @@ class LoadExchangeRatePortTest {
     void 환율정보조회성공() {
         exchangeRateCaller.setQuotes(Collections.singletonMap(quoteKey, price));
 
-        final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
+        final Optional<ExchangeRate> result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
-        assertThat(result).isNotNull();
-        assertThat(result.getPrice()).isEqualTo(price);
+        assertThat(result.isPresent()).isTrue();
+        assertThat(result.get().getPrice()).isEqualTo(price);
     }
 
 }

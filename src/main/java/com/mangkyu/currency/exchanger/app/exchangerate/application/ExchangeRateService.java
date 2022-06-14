@@ -9,6 +9,8 @@ import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ExchangeRateService implements GetExchangeRateUseCase {
@@ -18,11 +20,9 @@ public class ExchangeRateService implements GetExchangeRateUseCase {
 
     @Override
     public ExchangeRate getExchangeRate(final Currency source, final Currency target) {
-        final ExchangeRate exchangeRate = loadExchangeRatePort.getExchangeRate(source, target);
-
-        exchangeRateHistoryPort.save(ExchangeRateConverter.INSTANCE.toAddExchangeRateHistoryRequest(exchangeRate));
-
-        return exchangeRate;
+        final Optional<ExchangeRate> optionalExchangeRate = loadExchangeRatePort.getExchangeRate(source, target);
+        optionalExchangeRate.ifPresent(v -> exchangeRateHistoryPort.save(ExchangeRateConverter.INSTANCE.toAddExchangeRateHistoryRequest(v)));
+        return optionalExchangeRate.get();
     }
 
 }
