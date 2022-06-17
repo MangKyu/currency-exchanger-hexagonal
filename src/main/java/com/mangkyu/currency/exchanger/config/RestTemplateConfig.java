@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -47,15 +48,15 @@ class RestTemplateConfig {
 
         @Override
         public ClientHttpResponse intercept(HttpRequest req, byte[] body, ClientHttpRequestExecution ex) throws IOException {
-            final String sessionNumber = makeSessionNumber();
-            printRequest(sessionNumber, req, body);
+            final String requestSessionKey = makeRequestSessionKey();
+            printRequest(requestSessionKey, req, body);
             ClientHttpResponse response = ex.execute(req, body);
-            printResponse(sessionNumber, response);
+            printResponse(requestSessionKey, response);
             return response;
         }
 
-        private String makeSessionNumber() {
-            return Integer.toString((int) (Math.random() * 1000000));
+        private String makeRequestSessionKey() {
+            return UUID.randomUUID().toString();
         }
 
         private void printRequest(final String sessionNumber, final HttpRequest req, final byte[] body) {
