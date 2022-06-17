@@ -15,9 +15,9 @@ import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeT
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class LoadExchangeRatePortTest {
+class LoadExchangeRateQueryTest {
 
-    private LoadExchangeRatePort target;
+    private LoadExchangeRateQuery target;
     private TestExchangeRateApiCaller exchangeRateCaller;
 
     @BeforeEach

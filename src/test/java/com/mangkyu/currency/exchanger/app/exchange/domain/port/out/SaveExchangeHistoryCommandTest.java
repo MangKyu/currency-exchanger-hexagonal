@@ -12,9 +12,9 @@ import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeT
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-class SaveExchangeHistoryPortTest {
+class SaveExchangeHistoryCommandTest {
 
-    private SaveExchangeHistoryPort target;
+    private SaveExchangeHistoryCommand target;
 
     @Autowired
     private ExchangeHistoryPersistenceRepository repository;

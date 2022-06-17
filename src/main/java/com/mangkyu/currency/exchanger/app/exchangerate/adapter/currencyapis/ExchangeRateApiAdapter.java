@@ -2,7 +2,7 @@ package com.mangkyu.currency.exchanger.app.exchangerate.adapter.currencyapis;
 
 import com.mangkyu.currency.exchanger.app.exchangerate.converter.ExchangeRateConverter;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
-import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRatePort;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateQuery;
 import com.mangkyu.currency.exchanger.app.exchangerate.error.ExchangeRateException;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ExchangeRateApiAdapter implements LoadExchangeRatePort {
+public class ExchangeRateApiAdapter implements LoadExchangeRateQuery {
 
     private final CurrentExchangeRateCaller exchangeRateCaller;
 

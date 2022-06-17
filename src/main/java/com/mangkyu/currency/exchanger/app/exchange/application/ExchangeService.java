@@ -2,7 +2,7 @@ package com.mangkyu.currency.exchanger.app.exchange.application;
 
 import com.mangkyu.currency.exchanger.app.exchange.converter.ExchangeConverter;
 import com.mangkyu.currency.exchanger.app.exchange.domain.port.in.ExchangeUseCase;
-import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryPort;
+import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryCommand;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeException;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class ExchangeService implements ExchangeUseCase {
 
     private final GetExchangeRateUseCase getExchangeRateUseCase;
-    private final SaveExchangeHistoryPort saveExchangeHistoryPort;
+    private final SaveExchangeHistoryCommand saveExchangeHistoryCommand;
 
     @Override
     public Money exchangeMoney(final Money money, final Currency target) {
@@ -29,7 +29,7 @@ public class ExchangeService implements ExchangeUseCase {
         final ExchangeRate exchangeRate = getExchangeRateUseCase.getExchangeRate(money.getCurrency(), target);
         final Money exchangedMoney = money.exchange(exchangeRate.getPrice(), target);
 
-        saveExchangeHistoryPort.save(ExchangeConverter.INSTANCE.toAddExchangeHistoryRequest(money, target, exchangeRate.getPrice()));
+        saveExchangeHistoryCommand.save(ExchangeConverter.INSTANCE.toAddExchangeHistoryRequest(money, target, exchangeRate.getPrice()));
 
         return exchangedMoney;
     }

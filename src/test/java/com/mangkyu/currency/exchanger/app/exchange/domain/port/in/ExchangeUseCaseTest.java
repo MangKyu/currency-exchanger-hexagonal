@@ -2,7 +2,7 @@ package com.mangkyu.currency.exchanger.app.exchange.domain.port.in;
 
 import com.mangkyu.currency.exchanger.app.exchange.adapter.persistence.AddExchangeHistoryRequest;
 import com.mangkyu.currency.exchanger.app.exchange.application.ExchangeService;
-import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryPort;
+import com.mangkyu.currency.exchanger.app.exchange.domain.port.out.SaveExchangeHistoryCommand;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeErrorCode;
 import com.mangkyu.currency.exchanger.app.exchange.error.ExchangeException;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.in.GetExchangeRateUseCase;
@@ -22,13 +22,13 @@ class ExchangeUseCaseTest {
 
     private ExchangeUseCase target;
     private GetExchangeRateUseCase getExchangeRateUseCase;
-    private SaveExchangeHistoryPort saveExchangeHistoryPort;
+    private SaveExchangeHistoryCommand saveExchangeHistoryCommand;
 
     @BeforeEach
     void init() {
         getExchangeRateUseCase = mock(GetExchangeRateUseCase.class);
-        saveExchangeHistoryPort = mock(SaveExchangeHistoryPort.class);
-        target = new ExchangeService(getExchangeRateUseCase, saveExchangeHistoryPort);
+        saveExchangeHistoryCommand = mock(SaveExchangeHistoryCommand.class);
+        target = new ExchangeService(getExchangeRateUseCase, saveExchangeHistoryCommand);
     }
 
     @ParameterizedTest
@@ -51,7 +51,7 @@ class ExchangeUseCaseTest {
         final Money result = target.exchangeMoney(money, targetCurrency);
         assertThat(result).isEqualTo(exchangedMoney);
 
-        verify(saveExchangeHistoryPort, times(1)).save(any(AddExchangeHistoryRequest.class));
+        verify(saveExchangeHistoryCommand, times(1)).save(any(AddExchangeHistoryRequest.class));
     }
 
 }

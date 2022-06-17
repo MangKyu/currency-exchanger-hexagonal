@@ -16,9 +16,9 @@ import static com.mangkyu.currency.exchanger.app.exchangerate.testbase.ExchangeT
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-class LoadExchangeRateHistoryPortTest {
+class LoadExchangeRateHistoryQueryTest {
 
-    private LoadExchangeRateHistoryPort target;
+    private LoadExchangeRateHistoryQuery target;
 
     @Autowired
     private ExchangeRateHistoryPersistenceRepository repository;

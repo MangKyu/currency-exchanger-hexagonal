@@ -2,7 +2,7 @@ package com.mangkyu.currency.exchanger.app.exchangerate.adapter.persistence;
 
 import com.mangkyu.currency.exchanger.app.exchangerate.converter.ExchangeRateConverter;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
-import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateHistoryPort;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateHistoryQuery;
 import com.mangkyu.currency.exchanger.app.money.domain.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class ExchangeRateHistoryReadPersistenceAdapter implements LoadExchangeRateHistoryPort {
+public class ExchangeRateHistoryReadPersistenceAdapter implements LoadExchangeRateHistoryQuery {
 
     private final ExchangeRateHistoryPersistenceRepository repository;
 

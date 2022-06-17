@@ -3,9 +3,9 @@ package com.mangkyu.currency.exchanger.app.exchangerate.domain.port.in;
 import com.mangkyu.currency.exchanger.app.exchangerate.adapter.persistence.AddExchangeRateHistoryRequest;
 import com.mangkyu.currency.exchanger.app.exchangerate.application.ExchangeRateService;
 import com.mangkyu.currency.exchanger.app.exchangerate.domain.ExchangeRate;
-import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateHistoryPort;
-import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRatePort;
-import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.SaveExchangeRateHistoryPort;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateHistoryQuery;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.LoadExchangeRateQuery;
+import com.mangkyu.currency.exchanger.app.exchangerate.domain.port.out.SaveExchangeRateHistoryCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,45 +18,45 @@ import static org.mockito.Mockito.*;
 class GetExchangeRateUseCaseTest {
 
     private GetExchangeRateUseCase target;
-    private LoadExchangeRatePort loadExchangeRatePort;
-    private SaveExchangeRateHistoryPort saveExchangeRateHistoryPort;
-    private LoadExchangeRateHistoryPort loadExchangeRateHistoryPort;
+    private LoadExchangeRateQuery loadExchangeRateQuery;
+    private SaveExchangeRateHistoryCommand saveExchangeRateHistoryCommand;
+    private LoadExchangeRateHistoryQuery loadExchangeRateHistoryQuery;
 
     @BeforeEach
     void init() {
-        loadExchangeRatePort = mock(LoadExchangeRatePort.class);
-        saveExchangeRateHistoryPort = mock(SaveExchangeRateHistoryPort.class);
-        loadExchangeRateHistoryPort = mock(LoadExchangeRateHistoryPort.class);
-        target = new ExchangeRateService(loadExchangeRatePort, saveExchangeRateHistoryPort, loadExchangeRateHistoryPort);
+        loadExchangeRateQuery = mock(LoadExchangeRateQuery.class);
+        saveExchangeRateHistoryCommand = mock(SaveExchangeRateHistoryCommand.class);
+        loadExchangeRateHistoryQuery = mock(LoadExchangeRateHistoryQuery.class);
+        target = new ExchangeRateService(loadExchangeRateQuery, saveExchangeRateHistoryCommand, loadExchangeRateHistoryQuery);
     }
 
     @Test
     void 현재환율조회성공() {
-        doReturn(Optional.of(exchangeRate)).when(loadExchangeRatePort)
+        doReturn(Optional.of(exchangeRate)).when(loadExchangeRateQuery)
                 .loadExchangeRate(sourceCurrency, targetCurrency);
 
         final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
         assertThat(result.getPrice()).isEqualTo(price);
 
-        verify(loadExchangeRatePort, times(1)).loadExchangeRate(sourceCurrency, targetCurrency);
-        verify(saveExchangeRateHistoryPort, times(1)).save(any(AddExchangeRateHistoryRequest.class));
+        verify(loadExchangeRateQuery, times(1)).loadExchangeRate(sourceCurrency, targetCurrency);
+        verify(saveExchangeRateHistoryCommand, times(1)).save(any(AddExchangeRateHistoryRequest.class));
     }
 
     @Test
     void 최근값으로_환율조회성공() {
-        doReturn(Optional.empty()).when(loadExchangeRatePort)
+        doReturn(Optional.empty()).when(loadExchangeRateQuery)
                 .loadExchangeRate(sourceCurrency, targetCurrency);
-        doReturn(exchangeRate).when(loadExchangeRateHistoryPort)
+        doReturn(exchangeRate).when(loadExchangeRateHistoryQuery)
                 .loadLatest(sourceCurrency, targetCurrency);
 
         final ExchangeRate result = target.getExchangeRate(sourceCurrency, targetCurrency);
 
         assertThat(result.getPrice()).isEqualTo(price);
 
-        verify(loadExchangeRatePort, times(1)).loadExchangeRate(sourceCurrency, targetCurrency);
-        verify(saveExchangeRateHistoryPort, times(0)).save(any(AddExchangeRateHistoryRequest.class));
-        verify(loadExchangeRateHistoryPort, times(1)).loadLatest(sourceCurrency, targetCurrency);
+        verify(loadExchangeRateQuery, times(1)).loadExchangeRate(sourceCurrency, targetCurrency);
+        verify(saveExchangeRateHistoryCommand, times(0)).save(any(AddExchangeRateHistoryRequest.class));
+        verify(loadExchangeRateHistoryQuery, times(1)).loadLatest(sourceCurrency, targetCurrency);
     }
 
 }
